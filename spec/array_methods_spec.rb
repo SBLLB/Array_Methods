@@ -49,5 +49,32 @@ let(:test) {ArrayMethods.new}
 		end
 	end
 
+	context 'selecting elements of arrays' do 
+
+		it 'should return the value of a positive index' do 
+			expect(test.return_index_or_default([1,2,3,4], 2, 'b')).to eq(3)
+		end 
+
+		it 'should return the value of a negative index' do 
+			expect(test.return_index_or_default([1,2,3,4], -1, 'b')).to eq(4)
+		end 
+
+		it 'should return the value of a positive index using .fetch' do 
+			expect(test.better_return_index_or_default([1,2,3,4], 3, 'b')).to eq(4)
+		end
+
+		it 'should return the value of a negative index using .fetch' do 
+			expect(test.better_return_index_or_default([1,2,3,4], -1, 'b')).to eq(4)
+		end
+
+		it 'should return a default value if index out of range (negaitve index)' do 
+			expect(test.better_return_index_or_default([1,2,3,4], -5, 'b')).to eq('b')
+		end
+
+		it 'should return a default value if index out of range (positive index)' do 
+			expect(test.better_return_index_or_default([1,2,3,4], 4, 'b')).to eq('b')
+		end
+	end
+
 			
 end 

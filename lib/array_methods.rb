@@ -42,7 +42,24 @@ class ArrayMethods
 	end
 
 	def sort_string_last(*elements)
-		elements.sort! { |x,y| x[-1,1] <=> y[-1,1] } 
+		elements.sort! { |x,y| x[-1, 1] <=> y[-1, 1] } 
 		return elements 
+	end
+
+# THESE TWO METHODS DO THE SAME!! Returning the value of the 
+# index or, if value outside of range, return a default.
+
+	def return_index_or_default(items, index, default_value)
+		if index < 0 && items.length < index.abs
+			return default_value
+		elsif index >= 0 && items.length-1 < index
+			return default_value
+		else
+			return items[index] 
+		end
+	end
+
+	def better_return_index_or_default(items, index, default_value)
+		items.fetch(index, default_value)
 	end
 end
